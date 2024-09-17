@@ -146,3 +146,5 @@ JAZZMIN_SETTINGS = {
     'copyright': "chargespot.com",
 
 }
+
+AUTH_USER_MODEL = 'users.User'
