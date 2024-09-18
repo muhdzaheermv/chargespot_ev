@@ -9,6 +9,8 @@
     <!--REMIX ICONS-->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/80c3c1081e.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,400,0,0" />
     <!--SWIPER CSS-->
     <link rel="stylesheet" href={% static 'css/swiper-bundle.min.css' %}>
     <!--CSS-->
@@ -39,11 +41,69 @@
                     <li class="nav__item">
                         <a href="#featured" class="nav__link">Feature</a>
                     </li>
-                    </li>
                     <li class="nav__item">
                         <a href="{% url 'login' %}" class="nav__link">Login</a>
                     </li>
+                    <li class="nav__item">
+                        <div class="action">
+                            <div class="profile" onclick="menuToggle();">
+                                <img src="{% static "img/user.png" %}" alt="">
+                            </div>
+                    
+                            <div class="menu">
+                                <h3>
+                                    User Account
+                                    <div>
+                                        Operational Team
+                                    </div>
+                                </h3>
+                                <ul>
+                                    <li>
+                                        <span class="material-icons icons-size">person</span>
+                                        <a href="#">My Account</a>
+                                    </li>
+                                    <li>
+                                        <span class="material-symbols-outlined icons-size">
+                                            book
+                                            </span>
+                                        <a href="#">Booking Status</a>
+                                    </li>
+                                    <li>
+                                        <span class="material-icons icons-size">insert_comment</span>
+                                        <a href="#">My Voucher</a>
+                                    </li>
+                                    <li>
+                                        <span class="material-symbols-outlined icons-size">
+                                            favorite
+                                            </span>
+                                        <a href="#">Favorites</a>
+                                    </li>
+                                    <li>
+                                        <span class="material-symbols-outlined icons-size">
+                                            settings
+                                            </span>
+                                        <a href="#">Settings</a>
+                                    </li>
+                                    {%  if request.user.is_authenticated %}
+                                    <li>
+                                        <span class="material-symbols-outlined icons-size">logout</span>
+                                        <a href="{% url 'logout' %}">Sign-out</a>
+                                    </li>
+                                    {% else %}
+                                    <li>
+                                        <span class="material-symbols-outlined icons-size">
+                                            login
+                                            </span>
+                                        <a href="{% url 'login' %}">Sign-In</a>
+                                    </li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
+
+
                 <div class="nav__close" id="nav-close">
                     <i class="ri-close-line"></i>
                 </div>
@@ -112,6 +172,15 @@
     <a href="#" class="scrollup" id="scroll-up">
         <i class="ri-arrow-up-line"></i>
     </a>
+
+
+    <script>
+        function menuToggle(){
+            const toggleMenu = document.querySelector('.menu');
+            toggleMenu.classList.toggle('active')
+        }
+    </script>
+
     <script src="{% static '/js/scrollreveal.min.js' %}"></script>
     <script src="{% static '/js/swiper-bundle.min.js' %}"></script>
     <script src="{% static '/js/mixitup.min.js' %}"></script>
