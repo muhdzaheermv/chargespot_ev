@@ -3,8 +3,9 @@ from users.forms import UserRegisterForm
 from django.contrib.auth import login,authenticate,logout
 from django.contrib import messages
 from django.conf import settings
+from users.models import User
 
-User = settings.AUTH_USER_MODEL
+# User = settings.AUTH_USER_MODEL
 
 def index(request):
     return render(request,'index.html')
@@ -40,21 +41,20 @@ def login_view(request):
 
         try:
             user=User.objects.get(email=email)
+            user = authenticate(request,email=email,password=password)
+
+            if user is not None:
+                login(request,user)
+                messages.success(request,"You are Logged In")
+                return redirect("index")
+            else:
+                messages.warning(request,"User not Exist,Create an account")
+
         except:
             messages.warning(request,f"User with {email} does not exist")
 
-        user = authenticate(request,email=email,password=password)
+        
 
-        if user is not None:
-            login(request,user)
-            messages.success(request,"You are Logged In")
-            return redirect("index")
-        else:
-            messages.warning(request,"User not Exist,Create an account")
-
-    context={
-
-    }
 
 
     return render(request,'login.html')
