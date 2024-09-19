@@ -34,13 +34,13 @@ def user_directory_path(instance,filename):
 class Category(models.Model):
     cid=ShortUUIDField(unique=True,length=10,max_length=10,prefix="CCS2",alphabet="abcdefghijklm")
     title=models.CharField(max_length=100,default="CCS2")
-    image = models.ImageField(upload_to="category.jpg",default="category.jpg")
+    image = models.ImageField(upload_to="category", default="category.jpg")
 
     class Meta:
         verbose_name_plural = "Categories"
 
     def category_image(self):
-        return mark_safe('<img src="%s" width="50" height="50> />' % {self.image.url})
+        return mark_safe('<img src="%s" width="50" height="50" />' % (self.image.url))
 
     def __str__(self):
         return self.title
@@ -51,7 +51,7 @@ class Tags(models.Model):
 class vendor(models.Model):
     vid=ShortUUIDField(unique=True,length=10,max_length=10,prefix="CCS2",alphabet="abcdefghijklm")
     title=models.CharField(max_length=100,default="TATA")
-    image = models.ImageField(upload_to="user_directory_path",default="vendor.jpeg")
+    image = models.ImageField(upload_to=user_directory_path, default="vendor.jpg")
     description = models.TextField(null=True,blank=True,default="iam amazinf vendor")
 
 
@@ -66,7 +66,7 @@ class vendor(models.Model):
     user = models.ForeignKey(User,on_delete=models.SET_NULL ,null=True)
 
     def vendor_image(self):
-        return mark_safe('<img src="%s" width="50" height="50> />' % {self.image.url})
+        return mark_safe('<img src="%s" width="50" height="50" />' % (self.image.url))
 
     def __str__(self):
         return self.title
@@ -79,7 +79,7 @@ class ChargingStation(models.Model):
     Category = models.ForeignKey(Category,on_delete=models.SET_NULL ,null=True)
 
     title=models.CharField(max_length=100)
-    image = models.ImageField(upload_to="user_directory_path",default="charging_station.jpeg")
+    image = models.ImageField(upload_to=user_directory_path, default="station.jpg")
     description = models.TextField(null=True,blank=True,default="This is the Charging Station")
 
     price = models.DecimalField(max_digits=9999999999, decimal_places=2,default="1.99")
@@ -104,7 +104,7 @@ class ChargingStation(models.Model):
         verbose_name_plural = "Charging Station"
 
     def station_image(self):
-        return mark_safe('<img src="%s" width="50" height="50> />' % {self.image.url})
+        return mark_safe('<img src="%s" width="50" height="50" />' % (self.image.url))
 
     def __str__(self):
         return self.title
