@@ -10,6 +10,9 @@ from users.models import User
 def index(request):
     return render(request,'index.html')
 
+def home(request):
+    return render(request,'home.html')
+
 def signup(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST or None)
