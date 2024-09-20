@@ -13,12 +13,12 @@
         
         <section class="featured section" id="featured">
             <h2 class="section__title">{{ category.title }} Category</h2>
-            <h3 class="featured__subtitle">we found {{ stations.count }} item{{ stations.count|pluralize }} for you</h3>
-                <div class="featured__container container">
-                    <ul class="featured__filters">
-                        
-                       
-                       <li>
+            <h2 class="section__title"><span class="badge text-bg-primary">we found {{ stations.count }} item{{ stations.count|pluralize }} for you</h2></span>
+            <div class="featured__container container">
+                <ul class="featured__filters">
+                    
+                    
+                    <li>
                            <button class="featured__item" data-filter="">
                                <img src={{ category.image.url }} alt="logo 3">
                             </button>
