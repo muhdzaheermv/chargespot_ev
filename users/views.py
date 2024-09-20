@@ -34,7 +34,7 @@ def category_list_view(request):
     context={
         "stations":stations
     }
-    return render(request,'station_list.html',context)
+    return render(request,'category_list.html',context)
 
 def home(request):
     return render(request,'home.html')

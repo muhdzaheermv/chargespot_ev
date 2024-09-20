@@ -28,7 +28,7 @@
 <body>
     <header class="header" id="header">
         <nav class="nav container">
-            <a href="" class="nav__logo">
+            <a href="{% url 'index' %}" class="nav__logo">
                 <img style="width: 20px; height: 20px" class="logo-img" src={% static "img/logo.png" %} alt="">
                 <!-- <i class="ri-steering-line"></i> -->
                 ChargeSpot
@@ -36,19 +36,19 @@
             <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list">
                     <li class="nav__item">
-                        <a href="#home" class="nav__link active-link">Home</a>
+                        <a href="{% url 'index' %}" class="nav__link active-link">Home</a>
                     </li>
                     <li class="nav__item">
                         <a href="#about" class="nav__link">About</a>
                     </li>
                     <li class="nav__item">
-                        <a href="#popular" class="nav__link">Charger</a>
+                        <a href="{% url 'category-list' %}" class="nav__link">Category</a>
                     </li>
                     <li class="nav__item">
-                        <a href="#featured" class="nav__link">Feature</a>
+                        <a href="{% url 'stations-list' %}" class="nav__link">Stations</a>
                     </li>
                     <li class="nav__item">
-                        <a href="{% url 'login' %}" class="nav__link">Login</a>
+                        <a href="#" class="nav__link">Contact</a>
                     </li>
                     <li class="nav__item">
                         <div class="action">
