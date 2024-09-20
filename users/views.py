@@ -29,10 +29,10 @@ def stations_list_view(request):
 
 def category_list_view(request):
     
-    stations = ChargingStation.objects.filter(slot_status="published",featured="True")
+    category = Category.objects.all()
     
     context={
-        "stations":stations
+        "category":category
     }
     return render(request,'category_list.html',context)
 
