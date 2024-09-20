@@ -10,33 +10,32 @@
        
        
         
-       
+        
         <section class="featured section" id="featured">
-                <h2 class="section__title">There are {{ categories.count}} Charging Types</h2>
+            <h2 class="section__title">{{ category.title }} Category</h2>
+            <h3 class="featured__subtitle">we found {{ stations.count }} item{{ stations.count|pluralize }} for you</h3>
                 <div class="featured__container container">
                     <ul class="featured__filters">
                         
                        
-                       {% for categories in categories %}               
                        <li>
                            <button class="featured__item" data-filter="">
-                               <img src={{ categories.image.url }} alt="logo 3">
+                               <img src={{ category.image.url }} alt="logo 3">
                             </button>
-                            <h3 class="section__title">{{ categories.title }}</h3>
+                            <h3 class="section__title">{{ category.title }}</h3>
                         </li>
-                        {% endfor %}
                     </ul>
                     <div class="featured__content grid">
-
-                        
-                        
-                        
-                        {% for categories in categories %}
+          
+                        {% for stations in stations %}
                         <article class="featured__card mix porsche">
                             <div class="shape shape__smaller"></div>
-                            <h1 class="featured__title">{{ categories.title }}</h1>
-                            <a href="{% url 'category-station-list' categories.cid %}"><img src={{ categories.image.url }} alt="featured 4" class="featured__img"></a>
-                            <h3 class="featured__subtitle">{{ categories.category.count }} Station{{ categories.category.count|pluralize }}</h3>
+                            <span class="badge bg-danger">{{ stations.get_percentage|floatformat }}% OFF</span>
+                            <h1 class="featured__title">{{ stations.title }}</h1>
+                            <h3 class="featured__subtitle">{{ stations.category }}</h3>
+                            <img src={{ stations.image.url }} alt="featured 4" class="featured__img">
+                            <h3 class="featured__price badge bg-primary">${{ stations.price}}</h3><br>
+                            <span class="badge bg-secondary">${{ stations.old_price }}</span>
                             <button class="button featured__button">
                                 <i class="fa-solid fa-charging-station"></i>
                             </button>

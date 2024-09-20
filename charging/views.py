@@ -31,3 +31,14 @@ def stations_list_view(request):
         "stations":stations
     }
     return render(request,'station_list.html',context)
+
+def category_station_list__view(request,cid):
+    category=Category.objects.get(cid=cid)
+    stations=ChargingStation.objects.filter(slot_status="published",category=category)
+    
+    context={
+        "category":category,
+        "stations":stations,
+    }
+    
+    return render(request,"category-station_list.html",context)

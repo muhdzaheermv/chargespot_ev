@@ -32,7 +32,7 @@ def user_directory_path(instance,filename):
     return 'user_{0}/{1}'.format(instance.user.id,filename)
 
 class Category(models.Model):
-    cid=ShortUUIDField(unique=True,length=10,max_length=10,prefix="CCS2",alphabet="abcdefghijklm")
+    cid=ShortUUIDField(unique=True,length=10,max_length=20,prefix="CCS2",alphabet="abcde123")
     title=models.CharField(max_length=100,default="CCS2")
     image = models.ImageField(upload_to="category", default="category.jpg")
 
@@ -49,7 +49,7 @@ class Tags(models.Model):
     pass
 
 class vendor(models.Model):
-    vid=ShortUUIDField(unique=True,length=10,max_length=10,prefix="CCS2",alphabet="abcdefghijklm")
+    vid=ShortUUIDField(unique=True,length=10,max_length=20,prefix="V",alphabet="abcde123")
     title=models.CharField(max_length=100,default="TATA")
     image = models.ImageField(upload_to=user_directory_path, default="vendor.jpg")
     description = models.TextField(null=True,blank=True,default="iam amazinf vendor")
@@ -73,7 +73,7 @@ class vendor(models.Model):
 
 
 class ChargingStation(models.Model):
-    csid=ShortUUIDField(unique=True,length=10,max_length=20,alphabet="abcdefghijklm")
+    csid=ShortUUIDField(unique=True,length=10,max_length=20,alphabet="abcde12")
 
     user = models.ForeignKey(User,on_delete=models.SET_NULL ,null=True)
     category = models.ForeignKey(Category,on_delete=models.SET_NULL ,null=True,related_name="category")
@@ -96,7 +96,7 @@ class ChargingStation(models.Model):
     featured = models.BooleanField(default=False)
     # digital = models.BooleanField(default=False)
 
-    sku=ShortUUIDField(unique=True,length=4,max_length=10,prefix="sku",alphabet="1234567890")
+    sku=ShortUUIDField(unique=True,length=4,max_length=10,prefix="CS",alphabet="abcd123")
 
     date=models.DateField(auto_now_add=True)
     updated=models.DateField(null=True,blank=True)
