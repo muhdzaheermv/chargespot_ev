@@ -5,10 +5,36 @@ from django.contrib import messages
 from django.conf import settings
 from users.models import User
 
+from stationoperator.models import Category,ChargingStation,StationImages,SlotReservation,BookingSlots,StationReview,wishlist,Address,vendor
+
 # User = settings.AUTH_USER_MODEL
 
 def index(request):
-    return render(request,'index.html')
+    
+    stations = ChargingStation.objects.filter(slot_status="published",featured="True")
+    
+    context={
+        "stations":stations
+    }
+    return render(request,'index.html',context)
+
+def stations_list_view(request):
+    
+    stations = ChargingStation.objects.filter(slot_status="published",featured="True")
+    
+    context={
+        "stations":stations
+    }
+    return render(request,'station_list.html',context)
+
+def category_list_view(request):
+    
+    stations = ChargingStation.objects.filter(slot_status="published",featured="True")
+    
+    context={
+        "stations":stations
+    }
+    return render(request,'station_list.html',context)
 
 def home(request):
     return render(request,'home.html')
