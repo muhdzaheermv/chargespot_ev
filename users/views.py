@@ -9,32 +9,6 @@ from stationoperator.models import Category,ChargingStation,StationImages,SlotRe
 
 # User = settings.AUTH_USER_MODEL
 
-def index(request):
-    
-    stations = ChargingStation.objects.filter(slot_status="published",featured="True")
-    
-    context={
-        "stations":stations
-    }
-    return render(request,'index.html',context)
-
-def stations_list_view(request):
-    
-    stations = ChargingStation.objects.filter(slot_status="published",featured="True")
-    
-    context={
-        "stations":stations
-    }
-    return render(request,'station_list.html',context)
-
-def category_list_view(request):
-    
-    category = Category.objects.all()
-    
-    context={
-        "category":category
-    }
-    return render(request,'category_list.html',context)
 
 def home(request):
     return render(request,'home.html')

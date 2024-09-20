@@ -76,7 +76,8 @@ class ChargingStation(models.Model):
     csid=ShortUUIDField(unique=True,length=10,max_length=20,alphabet="abcdefghijklm")
 
     user = models.ForeignKey(User,on_delete=models.SET_NULL ,null=True)
-    category = models.ForeignKey(Category,on_delete=models.SET_NULL ,null=True)
+    category = models.ForeignKey(Category,on_delete=models.SET_NULL ,null=True,related_name="category")
+    vendor = models.ForeignKey(vendor,on_delete=models.SET_NULL ,null=True)
 
     title=models.CharField(max_length=100)
     image = models.ImageField(upload_to=user_directory_path, default="station.jpg")
@@ -89,7 +90,6 @@ class ChargingStation(models.Model):
     # tags=models.ForeignKey(Tags,on_delete=models.SET_NULL ,null=True)
 
     slot_status=models.CharField(max_length=10,choices=STATUS,default="in_review")
-    vendor = models.ForeignKey(vendor,on_delete=models.SET_NULL ,null=True)
 
     status=models.BooleanField(default=True)
     in_stock=models.BooleanField(default=True)
