@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.db.models import Count
 
-from stationoperator.models import Category,ChargingStation,StationImages,SlotReservation,BookingSlots,StationReview,wishlist,Address,vendor
+from stationoperator.models import Category,ChargingStation,StationImages,SlotReservation,BookingSlots,StationReview,wishlist,Address,Vendor
 
 def index(request):
     
@@ -42,3 +42,11 @@ def category_station_list__view(request,cid):
     }
     
     return render(request,"category-station_list.html",context)
+
+def vendor_list_view(request):
+    vendor = Vendor.objects.all()
+    
+    context={
+        "vendor":vendor,
+    }
+    return render(request,"vendor-list.html",context)

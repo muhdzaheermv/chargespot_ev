@@ -1,0 +1,21 @@
+
+{% block category_menu %}
+
+<div class="flex d-flex justify-content-center pb-5">
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Category
+        </button>
+        <ul class="dropdown-menu dropdown-menu-dark">
+            
+            {% for categories in categories %}
+            <li><a class="dropdown-item" href="{% url 'category-station-list' categories.cid %}">{{ categories.title }}</a></li>
+            {% endfor %}
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{% url 'category-list' %}">All Category</a></li>
+        </ul>
+    </div>    
+</div>
+    
+{% endblock category_menu %}
+    

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from . models import Category,ChargingStation,StationImages,SlotReservation,BookingSlots,StationReview,wishlist,Address,vendor
+from . models import Category,ChargingStation,StationImages,SlotReservation,BookingSlots,StationReview,wishlist,Address,Vendor
 
 class StationImagesAdmin(admin.TabularInline):
     model = StationImages
@@ -31,7 +31,7 @@ class AddressAdmin(admin.ModelAdmin):
     
 admin.site.register(ChargingStation,ChargingStationAdmin)
 admin.site.register(Category,CategoryAdmin)
-admin.site.register(vendor,VendorAdmin)
+admin.site.register(Vendor,VendorAdmin)
 admin.site.register(SlotReservation,SlotReservationAdmin)
 admin.site.register(BookingSlots,BookinSlotAdmin)
 admin.site.register(StationReview,StationReviewAdmin)

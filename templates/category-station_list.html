@@ -12,6 +12,7 @@
         
         
         <section class="featured section" id="featured">
+            {% include "partials/category_menu.html" %} 
             <h2 class="section__title">{{ category.title }} Category</h2>
             <h2 class="section__title"><span class="badge text-bg-primary">we found {{ stations.count }} item{{ stations.count|pluralize }} for you</h2></span>
             <div class="featured__container container">

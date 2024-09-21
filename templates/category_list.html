@@ -5,22 +5,27 @@
 {% block content %}
     
 
+<main class="main">
     
-    <main class="main">
-       
-       
+    
+    
+    
+    
+    
+    <section class="featured section" id="featured">
+
+        {% include "partials/category_menu.html" %} 
         
-       
-        <section class="featured section" id="featured">
-                <h2 class="section__title">There are {{ categories.count}} Charging Types</h2>
-                <div class="featured__container container">
-                    <ul class="featured__filters">
-                        
-                       
-                       {% for categories in categories %}               
+        <h2 class="section__title" id="category">There are {{ categories.count}} Charging Types</h2>
+        <div class="featured__container container">
+            <ul class="featured__filters">
+                
+                
+                {% for categories in categories %}               
                        <li>
                            <button class="featured__item" data-filter="">
-                               <img src={{ categories.image.url }} alt="logo 3">
+                            <a href="{% url 'category-station-list' categories.cid %}">
+                               <img src={{ categories.image.url }} alt="logo 3"></a>
                             </button>
                             <h3 class="section__title">{{ categories.title }}</h3>
                         </li>

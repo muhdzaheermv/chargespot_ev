@@ -32,7 +32,7 @@ def user_directory_path(instance,filename):
     return 'user_{0}/{1}'.format(instance.user.id,filename)
 
 class Category(models.Model):
-    cid=ShortUUIDField(unique=True,length=10,max_length=20,prefix="CCS2",alphabet="abcde123")
+    cid=ShortUUIDField(unique=True,length=10,max_length=20,prefix="cat",alphabet="abcdef123")
     title=models.CharField(max_length=100,default="CCS2")
     image = models.ImageField(upload_to="category", default="category.jpg")
 
@@ -48,7 +48,7 @@ class Category(models.Model):
 class Tags(models.Model):
     pass
 
-class vendor(models.Model):
+class Vendor(models.Model):
     vid=ShortUUIDField(unique=True,length=10,max_length=20,prefix="V",alphabet="abcde123")
     title=models.CharField(max_length=100,default="TATA")
     image = models.ImageField(upload_to=user_directory_path, default="vendor.jpg")
@@ -64,6 +64,7 @@ class vendor(models.Model):
     maintenance_period=models.CharField(max_length=100,default="100")
 
     user = models.ForeignKey(User,on_delete=models.SET_NULL ,null=True)
+    data = models.DateTimeField(auto_now_add=False,null=True,blank=True)
 
     def vendor_image(self):
         return mark_safe('<img src="%s" width="50" height="50" />' % (self.image.url))
@@ -77,7 +78,7 @@ class ChargingStation(models.Model):
 
     user = models.ForeignKey(User,on_delete=models.SET_NULL ,null=True)
     category = models.ForeignKey(Category,on_delete=models.SET_NULL ,null=True,related_name="category")
-    vendor = models.ForeignKey(vendor,on_delete=models.SET_NULL ,null=True)
+    vendor = models.ForeignKey(Vendor,on_delete=models.SET_NULL ,null=True,related_name="station")
 
     title=models.CharField(max_length=100)
     image = models.ImageField(upload_to=user_directory_path, default="station.jpg")

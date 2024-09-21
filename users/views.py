@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.conf import settings
 from users.models import User
 
-from stationoperator.models import Category,ChargingStation,StationImages,SlotReservation,BookingSlots,StationReview,wishlist,Address,vendor
+
 
 # User = settings.AUTH_USER_MODEL
 
