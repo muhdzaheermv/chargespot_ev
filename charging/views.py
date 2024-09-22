@@ -50,3 +50,13 @@ def vendor_list_view(request):
         "vendor":vendor,
     }
     return render(request,"vendor-list.html",context)
+
+def vendor_detail_view(request,vid):
+    vendor = Vendor.objects.get(vid=vid)
+    station = ChargingStation.objects.filter(vendor=vendor,slot_status="published")
+    
+    context={
+        "vendor":vendor,
+        "stations":stations,
+    }
+    return render(request,"vendor-detail.html",context)

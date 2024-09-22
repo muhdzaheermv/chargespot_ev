@@ -1103,6 +1103,9 @@ img {
     .about__img {
         width: 480px;
     }
+
+
+
     .about__card {
         width: 198px;
         padding: 1rem 1.25rem;
@@ -1112,6 +1115,7 @@ img {
         margin-bottom: 3rem;
 
     }
+
     .popular__container {
         width: 875px;
         padding-top: 3rem;

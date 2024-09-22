@@ -40,7 +40,8 @@
                         <article class="featured__card mix porsche">
                             <div class="shape shape__smaller"></div>
                             <!-- <span class="badge bg-danger">{{ stations.get_percentage|floatformat }}% OFF</span> -->
-                            <h1 class="featured__title">{{ vendor.title }}</h1>
+                            <a class="text-decoration-none" href="{% url 'vendor-detail' vendor.vid %}">
+                                <h1 class="featured__title">{{ vendor.title }}</h1>
                             <h3 class="featured__price badge bg-primary">{{ vendor.station.all.count }} Stations</h3>
                             <!-- <h3 class="featured__subtitle">{{ vendor.station.all.count }} Stations</h3> -->
                             <img src={{ vendor.image.url }} alt="featured 4" class="featured__img">
@@ -50,6 +51,7 @@
                             <button class="button featured__button">
                                 <i class="fa-solid fa-charging-station"></i>
                             </button>
+                        </a>
                         </article>
                         {% endfor %}
                     </div>

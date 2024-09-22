@@ -9,7 +9,12 @@
         <ul class="dropdown-menu dropdown-menu-dark">
             
             {% for categories in categories %}
-            <li><a class="dropdown-item" href="{% url 'category-station-list' categories.cid %}">{{ categories.title }}</a></li>
+            <li>
+                <a class="dropdown-item" href="{% url 'category-station-list' categories.cid %}">{{ categories.title }}
+                    <!-- <span class="badge rounded-pill bg-primary">{{ categories.categories.all.count }}</span> -->
+                </a>
+            </li>
+                
             {% endfor %}
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="{% url 'category-list' %}">All Category</a></li>

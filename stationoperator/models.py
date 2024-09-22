@@ -52,6 +52,7 @@ class Vendor(models.Model):
     vid=ShortUUIDField(unique=True,length=10,max_length=20,prefix="V",alphabet="abcde123")
     title=models.CharField(max_length=100,default="TATA")
     image = models.ImageField(upload_to=user_directory_path, default="vendor.jpg")
+    cover_image = models.ImageField(upload_to=user_directory_path, default="vendor.jpg")
     description = models.TextField(null=True,blank=True,default="iam amazinf vendor")
 
 
@@ -64,7 +65,7 @@ class Vendor(models.Model):
     maintenance_period=models.CharField(max_length=100,default="100")
 
     user = models.ForeignKey(User,on_delete=models.SET_NULL ,null=True)
-    data = models.DateTimeField(auto_now_add=False,null=True,blank=True)
+    date = models.DateTimeField(auto_now_add=False,null=True,blank=True)
 
     def vendor_image(self):
         return mark_safe('<img src="%s" width="50" height="50" />' % (self.image.url))
