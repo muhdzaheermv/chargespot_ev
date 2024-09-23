@@ -16,21 +16,13 @@
                                 <span>select</span>
                             </button>
                         </li>
+                        {% for vendor in vendor %}
                         <li>
                             <button class="featured__item" data-filter=".porsche">
-                                <img src={% static "img/ather_logo.png" %} alt="logo 1">
+                                <a href="{% url 'vendor-detail' vendor.vid %}"><img src={{ vendor.image.url }} alt="logo 1"></a>
                             </button>
                         </li>
-                        <li>
-                            <button class="featured__item" data-filter=".audi">
-                                <img src={% static "img/tata_logo.png" %} alt="logo 2">
-                            </button>
-                        </li>
-                        <li>
-                            <button class="featured__item" data-filter=".tesla">
-                                <img src={% static "img/charge_point_logo.png" %} alt="logo 3">
-                            </button>
-                        </li>
+                        {% endfor %}
                     </ul>
                     <div class="featured__content grid">
                         

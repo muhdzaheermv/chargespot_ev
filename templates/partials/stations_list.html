@@ -1,0 +1,58 @@
+
+{% load static %}
+{% block category_menu %}
+
+<main class="main">
+    <section class="featured section" id="featured">
+            <h2 class="section__title">Choose Your Station</h2>
+            <div class="featured__container container">
+                <ul class="featured__filters">
+                    <li>
+                        <button class="featured__item active-featured" data-filter="all">
+                            <span>select</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button class="featured__item" data-filter=".porsche">
+                            <img src={% static "img/ather_logo.png" %} alt="logo 1">
+                        </button>
+                    </li>
+                    <li>
+                        <button class="featured__item" data-filter=".audi">
+                            <img src={% static "img/tata_logo.png" %} alt="logo 2">
+                        </button>
+                    </li>
+                    <li>
+                        <button class="featured__item" data-filter=".tesla">
+                            <img src={% static "img/charge_point_logo.png" %} alt="logo 3">
+                        </button>
+                    </li>
+                </ul>
+                {% include "partials/category_menu.html" %} 
+                <div class="featured__content grid">
+                    
+                    
+                    
+                    {% for stations in stations %}
+                    <a class="text-decoration-none" href="{% url 'stations-detail' stations.csid %}">
+                        <article class="featured__card mix porsche">
+                        <div class="shape shape__smaller"></div>
+                        <span class="badge bg-danger">{{ stations.get_percentage|floatformat }}% OFF</span>
+                        <h1 class="featured__title">{{ stations.title }}</h1>
+                        <h3 class="featured__subtitle">{{ stations.category }}</h3>
+                        <img src={{ stations.image.url }} alt="featured 4" class="featured__img">
+                        <h3 class="featured__price badge bg-primary">${{ stations.price}}</h3><br>
+                        <span class="badge bg-secondary">${{ stations.old_price }}</span>
+                        <button class="button featured__button">
+                            <i class="fa-solid fa-charging-station"></i>
+                        </button>
+                    </article>
+                </a>
+                    {% endfor %}
+                </div>
+            </div>
+    </section>
+</main>
+    
+{% endblock category_menu %}
+    
