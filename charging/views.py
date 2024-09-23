@@ -32,7 +32,7 @@ def stations_list_view(request):
     }
     return render(request,'station_list.html',context)
 
-def category_station_list__view(request,cid):
+def category_station_list(request,cid):
     category=Category.objects.get(cid=cid)
     stations=ChargingStation.objects.filter(slot_status="published",category=category)
     
@@ -57,6 +57,18 @@ def vendor_detail_view(request,vid):
     
     context={
         "vendor":vendor,
-        "stations":stations,
+        "stations":station,
     }
     return render(request,"vendor-detail.html",context)
+
+def station_detail_view(request,csid):
+    station = ChargingStation.objects.get(csid=csid)
+    
+    station_images = station.station_images.all()
+    
+    context={
+        'station':station,
+        'station_images':station_images,
+    }
+    
+    return render(request,"station_details_view.html",context)

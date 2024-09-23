@@ -1,0 +1,68 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+
+{% block content %}
+    
+
+    
+    <main class="main">
+            
+        
+            
+        <section class="featured section" id="featured">        
+            <div class="featured__container container">            
+                <section class="about section" id="about">
+                    <div class="about__container container grid">
+                        <div class="about__group">
+                            <img src={{ station.image.url }} alt="about image" class="about__img">
+                            <!-- <div class="about__card">
+                                <h3 class="about__card-title">+2,500</h3>
+                                <p class="about__card-description">Fast Charging Stations on Top Routes</p>
+                            </div> -->
+                            
+                            
+                            
+                            <div class="container text-center">
+                                <div class="row">
+                                    {% for station_images in station_images  %}
+                                    <div class="col">
+                                        <a href=""><img src="{{ station_images.images.url }}" class="img-thumbnail" alt="..."></a>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+                        </div>
+                            <div class="about__data">
+                                <span class="badge bg-danger">{{ station.get_percentage|floatformat }}% OFF</span>
+                                <h2 class="section__title about__title">
+                                    {{ station.title }}
+                                </h2>
+                                <h3 class="featured__subtitle">{{ station.category }}</h3>
+                                <p class="about__description">{{ station.description }}</p>
+                                <h3 class="featured__price badge bg-primary">${{ station.price}}</h3><br>
+                                <span class="badge bg-secondary mb-5">${{ station.old_price }}</span><br>
+                                <a href="#" class="button">Slot Book now</a>
+                            </div>
+        
+                        
+                    </div>
+                </section>
+            </div>
+        </section>
+    </main>
+    {% endblock content %}
+
+    <!-- <article class="featured__card mix porsche">
+        <div class="shape shape__smaller"></div>
+        <span class="badge bg-danger">{{ stations.get_percentage|floatformat }}% OFF</span>
+        <h1 class="featured__title">{{ stations.title }}</h1>
+        <h3 class="featured__subtitle">{{ stations.category }}</h3>
+        <img src={{ stations.image.url }} alt="featured 4" class="featured__img">
+        <h3 class="featured__price badge bg-primary">${{ stations.price}}</h3><br>
+        <span class="badge bg-secondary">${{ stations.old_price }}</span>
+        <button class="button featured__button">
+            <i class="fa-solid fa-charging-station"></i>
+        </button>
+    </article> -->

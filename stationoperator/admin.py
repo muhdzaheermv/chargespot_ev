@@ -6,7 +6,7 @@ class StationImagesAdmin(admin.TabularInline):
     
 class ChargingStationAdmin(admin.ModelAdmin):
     inlines=[StationImagesAdmin]
-    list_display=['user','title','station_image','price','category','vendor','featured','slot_status']
+    list_display=['user','title','station_image','price','category','vendor','featured','slot_status','csid']
     
 class CategoryAdmin(admin.ModelAdmin):
     list_display=['title','category_image']

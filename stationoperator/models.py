@@ -88,7 +88,12 @@ class ChargingStation(models.Model):
     price = models.DecimalField(max_digits=9999999999, decimal_places=2,default="1.99")
     old_price = models.DecimalField(max_digits=9999999999, decimal_places=2,default="2.99")
 
-    specification=models.TextField(null=True,blank=True)
+    specification=models.TextField(null="True",blank="True")
+    type=models.CharField(max_length=100,default="CCS2",null="True",blank="True")
+    Charging_capacity=models.CharField(max_length=100,default="CCS, >100 kW",null="True",blank="True")
+    Charging_time=models.CharField(max_length=100,default="24V",null="True",blank="True")
+    installation_date=models.DateField(auto_now_add=False,null="True",blank="True")
+    
     # tags=models.ForeignKey(Tags,on_delete=models.SET_NULL ,null=True)
 
     slot_status=models.CharField(max_length=10,choices=STATUS,default="in_review")
@@ -118,7 +123,7 @@ class ChargingStation(models.Model):
 
 class StationImages(models.Model):
     images=models.ImageField(upload_to="station-images", default="station.jpg")
-    chargingstation = models.ForeignKey(ChargingStation,on_delete=models.SET_NULL ,null=True)
+    chargingstation = models.ForeignKey(ChargingStation,related_name="station_images",on_delete=models.SET_NULL ,null=True)
     date = models.DateTimeField(auto_now_add=True)
 
     class Meta:
