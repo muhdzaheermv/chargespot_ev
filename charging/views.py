@@ -63,12 +63,14 @@ def vendor_detail_view(request,vid):
 
 def station_detail_view(request,csid):
     station = ChargingStation.objects.get(csid=csid)
+    stations = ChargingStation.objects.filter(category=station.category).exclude(csid=csid)
     
     station_images = station.station_images.all()
     
     context={
         'station':station,
         'station_images':station_images,
+        'stations':stations,
     }
     
     return render(request,"station_details_view.html",context)

@@ -3,123 +3,158 @@
 
 
 {% block content %}
-    
 
-    
-    <main class="main">
-            
-        
-            
-        <section class="featured section" id="featured">        
-            <div class="featured__container container">            
-                <section class="about section" id="about">
-                    <div class="about__container container grid">
-                        <div class="about__group">
-                            <img src={{ station.image.url }} alt="about image" class="about__img">
-                            <!-- <div class="about__card">
+
+
+<main class="main">
+
+
+
+    <section class="featured section" id="featured">
+        <div class="featured__container container">
+            <section class="about section" id="about">
+                <div class="about__container container grid">
+                    <div class="about__group">
+                        <img src={{ station.image.url }} alt="about image" class="about__img">
+                        <!-- <div class="about__card">
                                 <h3 class="about__card-title">+2,500</h3>
                                 <p class="about__card-description">Fast Charging Stations on Top Routes</p>
                             </div> -->
-                            
-                            
-                            
-                            <div class="container text-center">
-                                <div class="row">
-                                    {% for station_images in station_images  %}
-                                    <div class="col">
-                                        <a href=""><img src="{{ station_images.images.url }}" class="img-thumbnail" alt="..."></a>
-                                    </div>
-                                    {% endfor %}
+
+
+
+                        <div class="container text-center">
+                            <div class="row">
+                                {% for station_images in station_images %}
+                                <div class="col">
+                                    <a href=""><img src="{{ station_images.images.url }}" class="img-thumbnail"
+                                            alt="..."></a>
                                 </div>
+                                {% endfor %}
                             </div>
-
                         </div>
-                            <div class="about__data">
-                                <span class="badge bg-danger">{{ station.get_percentage|floatformat }}% OFF</span>
-                                <h2 class="section__title about__title">
-                                    {{ station.title }}
-                                </h2>
-                                <h3 class="featured__subtitle">{{ station.category }}</h3>
-                                <p class="about__description">{{ station.description|truncatechars:100 }} <a class="text-secondary" href="#description">Readmore</a></p>
-                                
 
-                                <h3 class="featured__price badge bg-primary">${{ station.price}}</h3><br>
-                                <span class="badge bg-secondary mb-5">${{ station.old_price }}</span><br>
-                                <a href="#specification" class="button">Slot Book now</a>
-                            </div>
-        
-                        
                     </div>
-                </section>
+                    <div class="about__data">
+                        <span class="badge bg-danger">{{ station.get_percentage|floatformat }}% OFF</span>
+                        <h2 class="section__title about__title">
+                            {{ station.title }}
+                        </h2>
+                        <h3 class="featured__subtitle">{{ station.category }}</h3>
+                        <p class="about__description">{{ station.description|truncatechars:100 }} <a
+                                class="text-secondary" href="#description">Readmore</a></p>
 
-                <div class="card w-75 mb-3 bg-dark" id="description">
-                    <div class="card-body">
-                      <h5 class="card-title text-light">Description</h5>
-                      <p class="card-text text-light ">{{station.description}}</p>
+
+                        <h3 class="featured__price badge bg-primary">${{ station.price}}</h3><br>
+                        <span class="badge bg-secondary mb-5">${{ station.old_price }}</span><br>
+                        <a href="#specification" class="button">Slot Book now</a>
                     </div>
-                  </div>
-                  
-                  <div class="card w-75 mb-3 bg-dark">
-                    <div class="card-body">
-                      <h5 class="card-title text-light">{{station.title}} Specifications</h5>
-                      <p class="card-text text-light ">Charging capacity :
-                          <span class=" featured__subtitle">{{ station.Charging_capacity }}</span>
-                     </p>
-                      <p class="card-text text-light ">Charging time :
-                          <span class=" featured__subtitle">{{ station.Charging_time }}</span>
-                     </p>
-                      <p class="card-text text-light ">installation date :
-                          <span class="featured__subtitle">{{ station.installation_date }}</span>
-                     </p>
-                    </div>
-                  </div>
-                  
-                  <div class="card w-75 mb-3 bg-dark">
-                    <div class="card-body">
-                      <h5 class="card-title text-light">{{station.vendor.title}}</h5>
-                      <p class="card-text text-light ">chat response time :
-                          <span class=" featured__subtitle">{{station.vendor.chat_resp_time}}</span>
-                     </p>
-                      <p class="card-text text-light ">charging efficiency :
-                          <span class=" featured__subtitle">{{station.vendor.charging_efficiency}}</span>
-                     </p>
-                      <p class="card-text text-light ">Rating :
-                          <span class="badge bg-warning">{{station.vendor.station_rating}}/10</span>
-                     </p>
-                      <p class="card-text text-light ">reservation cancellation window :
-                          <span class=" featured__subtitle">{{station.vendor.reservation_cancellation_window}}</span>
-                     </p>
-                      <p class="card-text text-light ">maintenance period :
-                          <span class=" featured__subtitle">{{station.vendor.maintenance_period}}</span>
-                     </p>
-                      <p class="card-text text-light ">Since :
-                          <span class=" featured__subtitle">{{station.vendor.date|date:"Y"}}</span>
-                     </p>
-                      <a href="{% url 'vendor-list' %}" class="btn btn-primary">See more</a>
-                    </div>
-                  </div>
-                  <div class="row row-cols-1 row-cols-md-3 g-4">
-                    <div class="col">
-                        <div class="card text-bg-dark mb-3" style="max-width: 18rem;">
-                            <div class="card-header">Your Address</div>
-                            <div class="card-body">
-                              <h5 class="card-title">{{ address.address }}</h5>
-                              <p class="card-text">
+
+
+                </div>
+            </section>
+
+            <div class="card w-75 mb-3 bg-dark" id="description">
+                <div class="card-body">
+                    <h5 class="card-title text-light">Description</h5>
+                    <p class="card-text text-light ">{{station.description}}</p>
+                </div>
+            </div>
+
+            <div class="card w-75 mb-3 bg-dark">
+                <div class="card-body">
+                    <h5 class="card-title text-light">{{station.title}} Specifications</h5>
+                    <p class="card-text text-light ">Charging capacity :
+                        <span class=" featured__subtitle">{{ station.Charging_capacity }}</span>
+                    </p>
+                    <p class="card-text text-light ">Charging time :
+                        <span class=" featured__subtitle">{{ station.Charging_time }}</span>
+                    </p>
+                    <p class="card-text text-light ">installation date :
+                        <span class="featured__subtitle">{{ station.installation_date }}</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="card w-75 mb-3 bg-dark">
+                <div class="card-body">
+                    <h5 class="card-title text-light">{{station.vendor.title}}</h5>
+                    <p class="card-text text-light ">chat response time :
+                        <span class=" featured__subtitle">{{station.vendor.chat_resp_time}}</span>
+                    </p>
+                    <p class="card-text text-light ">charging efficiency :
+                        <span class=" featured__subtitle">{{station.vendor.charging_efficiency}}</span>
+                    </p>
+                    <p class="card-text text-light ">Rating :
+                        <span class="badge bg-warning">{{station.vendor.station_rating}}/10</span>
+                    </p>
+                    <p class="card-text text-light ">reservation cancellation window :
+                        <span class=" featured__subtitle">{{station.vendor.reservation_cancellation_window}}</span>
+                    </p>
+                    <p class="card-text text-light ">maintenance period :
+                        <span class=" featured__subtitle">{{station.vendor.maintenance_period}}</span>
+                    </p>
+                    <p class="card-text text-light ">Since :
+                        <span class=" featured__subtitle">{{station.vendor.date|date:"Y"}}</span>
+                    </p>
+                    <a href="{% url 'vendor-list' %}" class="btn btn-primary">See more</a>
+                </div>
+            </div>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="col">
+                    <div class="card text-bg-dark mb-3" style="max-width: 18rem;">
+                        <div class="card-header">Your Address</div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ address.address }}</h5>
+                            <p class="card-text">
                                 {% if address.status == True %}
                                 <span class="badge bg-success mb-5">Verified Address</span>
                                 {% else %}
                                 <span class="badge bg-danger mb-5">NotVerified Address</span>
-                                {% endif %}      
+                                {% endif %}
                             </p>
-                            </div>
-                          </div>
-                    </div>           
-                  </div>
-        </section>
-    </main>
-    {% endblock content %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
 
-    <!-- <article class="featured__card mix porsche">
+    <!-- Related Stations -->
+     
+        <section class="featured section" id="featured">
+            
+                <h2 class="section__title">Related Station</h2>
+                
+                <div class="featured__container container"> 
+                    <div class="featured__content grid">
+                        
+                        
+                        
+                        {% for stations in stations %}
+                        <a class="text-decoration-none" href="{% url 'stations-detail' stations.csid %}">
+                            <article class="featured__card mix porsche">
+                            <div class="shape shape__smaller"></div>
+                            <span class="badge bg-danger">{{ stations.get_percentage|floatformat }}% OFF</span>
+                            <h1 class="featured__title">{{ stations.title }}</h1>
+                            <h3 class="featured__subtitle">{{ stations.category }}</h3>
+                            <img src={{ stations.image.url }} alt="featured 4" class="featured__img">
+                            <h3 class="featured__price badge bg-primary">${{ stations.price}}</h3><br>
+                            <span class="badge bg-secondary">${{ stations.old_price }}</span>
+                            <button class="button featured__button">
+                                <i class="fa-solid fa-charging-station"></i>
+                            </button>
+                        </article>
+                    </a>
+                        {% endfor %}
+                    </div>
+                </div>
+        </section>
+
+
+</main>
+{% endblock content %}
+
+<!-- <article class="featured__card mix porsche">
         <div class="shape shape__smaller"></div>
         <span class="badge bg-danger">{{ stations.get_percentage|floatformat }}% OFF</span>
         <h1 class="featured__title">{{ stations.title }}</h1>
