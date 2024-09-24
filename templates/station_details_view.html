@@ -40,16 +40,81 @@
                                     {{ station.title }}
                                 </h2>
                                 <h3 class="featured__subtitle">{{ station.category }}</h3>
-                                <p class="about__description">{{ station.description }}</p>
+                                <p class="about__description">{{ station.description|truncatechars:100 }} <a class="text-secondary" href="#description">Readmore</a></p>
+                                
+
                                 <h3 class="featured__price badge bg-primary">${{ station.price}}</h3><br>
                                 <span class="badge bg-secondary mb-5">${{ station.old_price }}</span><br>
-                                <a href="#" class="button">Slot Book now</a>
+                                <a href="#specification" class="button">Slot Book now</a>
                             </div>
         
                         
                     </div>
                 </section>
-            </div>
+
+                <div class="card w-75 mb-3 bg-dark" id="description">
+                    <div class="card-body">
+                      <h5 class="card-title text-light">Description</h5>
+                      <p class="card-text text-light ">{{station.description}}</p>
+                    </div>
+                  </div>
+                  
+                  <div class="card w-75 mb-3 bg-dark">
+                    <div class="card-body">
+                      <h5 class="card-title text-light">{{station.title}} Specifications</h5>
+                      <p class="card-text text-light ">Charging capacity :
+                          <span class=" featured__subtitle">{{ station.Charging_capacity }}</span>
+                     </p>
+                      <p class="card-text text-light ">Charging time :
+                          <span class=" featured__subtitle">{{ station.Charging_time }}</span>
+                     </p>
+                      <p class="card-text text-light ">installation date :
+                          <span class="featured__subtitle">{{ station.installation_date }}</span>
+                     </p>
+                    </div>
+                  </div>
+                  
+                  <div class="card w-75 mb-3 bg-dark">
+                    <div class="card-body">
+                      <h5 class="card-title text-light">{{station.vendor.title}}</h5>
+                      <p class="card-text text-light ">chat response time :
+                          <span class=" featured__subtitle">{{station.vendor.chat_resp_time}}</span>
+                     </p>
+                      <p class="card-text text-light ">charging efficiency :
+                          <span class=" featured__subtitle">{{station.vendor.charging_efficiency}}</span>
+                     </p>
+                      <p class="card-text text-light ">Rating :
+                          <span class="badge bg-warning">{{station.vendor.station_rating}}/10</span>
+                     </p>
+                      <p class="card-text text-light ">reservation cancellation window :
+                          <span class=" featured__subtitle">{{station.vendor.reservation_cancellation_window}}</span>
+                     </p>
+                      <p class="card-text text-light ">maintenance period :
+                          <span class=" featured__subtitle">{{station.vendor.maintenance_period}}</span>
+                     </p>
+                      <p class="card-text text-light ">Since :
+                          <span class=" featured__subtitle">{{station.vendor.date|date:"Y"}}</span>
+                     </p>
+                      <a href="{% url 'vendor-list' %}" class="btn btn-primary">See more</a>
+                    </div>
+                  </div>
+                  <div class="row row-cols-1 row-cols-md-3 g-4">
+                    <div class="col">
+                        <div class="card text-bg-dark mb-3" style="max-width: 18rem;">
+                            <div class="card-header">Your Address</div>
+                            <div class="card-body">
+                              <h5 class="card-title">{{ address.address }}</h5>
+                              <p class="card-text">
+                                {% if address.status == True %}
+                                <span class="badge bg-success mb-5">Verified Address</span>
+                                {% else %}
+                                <span class="badge bg-danger mb-5">NotVerified Address</span>
+                                {% endif %}      
+                            </p>
+                            </div>
+                          </div>
+                    </div>           
+                  </div>
         </section>
     </main>
     {% endblock content %}
