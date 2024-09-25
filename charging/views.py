@@ -1,8 +1,12 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from django.db.models import Count
+from taggit.models import Tag
 
 from stationoperator.models import Category,ChargingStation,StationImages,SlotReservation,BookingSlots,StationReview,wishlist,Address,Vendor
+
+
+# HomePage
 
 def index(request):
     
@@ -12,6 +16,8 @@ def index(request):
         "stations":stations
     }
     return render(request,'index.html',context)
+
+# Category List
 
 def category_list_view(request):
     
@@ -23,6 +29,8 @@ def category_list_view(request):
     
     return render(request,'category_list.html',context)
 
+# Stations List
+
 def stations_list_view(request):
     
     stations = ChargingStation.objects.filter(slot_status="published",featured="True")
@@ -31,6 +39,8 @@ def stations_list_view(request):
         "stations":stations
     }
     return render(request,'station_list.html',context)
+
+# Station list View
 
 def category_station_list(request,cid):
     category=Category.objects.get(cid=cid)
@@ -43,6 +53,8 @@ def category_station_list(request,cid):
     
     return render(request,"category-station_list.html",context)
 
+# Vendor List View
+
 def vendor_list_view(request):
     vendor = Vendor.objects.all()
     
@@ -50,6 +62,8 @@ def vendor_list_view(request):
         "vendor":vendor,
     }
     return render(request,"vendor-list.html",context)
+
+# Vendor Detail View
 
 def vendor_detail_view(request,vid):
     vendor = Vendor.objects.get(vid=vid)
@@ -60,6 +74,8 @@ def vendor_detail_view(request,vid):
         "stations":station,
     }
     return render(request,"vendor-detail.html",context)
+
+# Station Detail View
 
 def station_detail_view(request,csid):
     station = ChargingStation.objects.get(csid=csid)
@@ -74,3 +90,19 @@ def station_detail_view(request,csid):
     }
     
     return render(request,"station_details_view.html",context)
+
+def tag_list(request, tag_slug=None):
+
+    station = ChargingStation.objects.filter(slot_status="published").order_by("-id")
+
+    tag = None 
+    if tag_slug:
+        tag = get_object_or_404(Tag, slug=tag_slug)
+        stations = station.filter(tags__in=[tag])
+
+    context = {
+        "stations": stations,
+        "tag": tag
+    }
+
+    return render(request, "tag.html", context)

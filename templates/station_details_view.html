@@ -42,10 +42,19 @@
                         </h2>
                         <h3 class="featured__subtitle">{{ station.category }}</h3>
                         <p class="about__description">{{ station.description|truncatechars:100 }} <a
-                                class="text-secondary" href="#description">Readmore</a></p>
-
-
-                        <h3 class="featured__price badge bg-primary">${{ station.price}}</h3><br>
+                            class="text-secondary" href="#description">Readmore</a></p>
+                            
+                            
+                            
+                            <h3 class="featured__subtitle">
+                                {% for tag in station.tags.all %}
+                                <a href="{% url 'tags' tag.slug %}" rel="tag">{{tag.name}}</a>
+                                {% endfor %}
+                                
+                                
+                            </h3>
+                            
+                            <h3 class="featured__price badge bg-primary">${{ station.price}}</h3><br>
                         <span class="badge bg-secondary mb-5">${{ station.old_price }}</span><br>
                         <a href="#specification" class="button">Slot Book now</a>
                     </div>

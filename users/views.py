@@ -10,8 +10,12 @@ from users.models import User
 # User = settings.AUTH_USER_MODEL
 
 
+# Landing Page
+
 def home(request):
     return render(request,'home.html')
+
+# Signup
 
 def signup(request):
     if request.method == 'POST':
@@ -32,6 +36,8 @@ def signup(request):
         'form':form,
     }
     return render(request,'signup.html',context)
+
+# Login
 
 def login_view(request):
     if request.user.is_authenticated:
@@ -62,10 +68,14 @@ def login_view(request):
 
     return render(request,'login.html')
 
+# Logout
+
 def logout_view(request):
     logout(request)
     messages.success(request,"You logged out")
     return redirect("login")
+
+# Register
 
 def register(request):
     return render(request,'register.html')

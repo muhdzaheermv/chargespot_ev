@@ -5,6 +5,8 @@ from django.db import models
 from shortuuid.django_fields import ShortUUIDField
 from django.utils.html import mark_safe
 from users.models import User
+from taggit.managers import TaggableManager
+from ckeditor_uploader.fields import RichTextUploadingField
 
 STATUS_CHOICE = {
     ("in_process","Booking in Process"),
@@ -93,6 +95,8 @@ class ChargingStation(models.Model):
     Charging_capacity=models.CharField(max_length=100,default="CCS, >100 kW",null="True",blank="True")
     Charging_time=models.CharField(max_length=100,default="24V",null="True",blank="True")
     installation_date=models.DateField(auto_now_add=False,null="True",blank="True")
+    
+    tags = TaggableManager(blank=True)
     
     # tags=models.ForeignKey(Tags,on_delete=models.SET_NULL ,null=True)
 
