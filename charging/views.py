@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render,get_object_or_404
-from django.db.models import Count
+from django.db.models import Count,Avg
 from taggit.models import Tag
 
 from stationoperator.models import Category,ChargingStation,StationImages,SlotReservation,BookingSlots,StationReview,wishlist,Address,Vendor
@@ -81,11 +81,17 @@ def station_detail_view(request,csid):
     station = ChargingStation.objects.get(csid=csid)
     stations = ChargingStation.objects.filter(category=station.category).exclude(csid=csid)
     
+    reviews=StationReview.objects.filter(station=station).order_by("-date")
+    
+    average_rating = StationReview.objects.filter(station=station).aggregate(rating=Avg('rating'))
+    
     station_images = station.station_images.all()
     
     context={
         'station':station,
         'station_images':station_images,
+        'average_rating':average_rating,
+        'reviews':reviews,
         'stations':stations,
     }
     

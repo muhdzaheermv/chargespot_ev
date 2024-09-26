@@ -170,7 +170,7 @@ class BookingSlots(models.Model):
 
 class StationReview(models.Model):
         user=models.ForeignKey(User, on_delete=models.SET_NULL,null=True)
-        station=models.ForeignKey(ChargingStation, on_delete=models.SET_NULL,null=True)
+        station=models.ForeignKey(ChargingStation, on_delete=models.SET_NULL,null=True,related_name="reviews")
         review=models.TextField()
         rating = models.IntegerField(choices=Rating,default=None)
         date = models.DateTimeField(auto_now_add=True)
