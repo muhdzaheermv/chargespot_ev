@@ -60,9 +60,9 @@
 
                             <div class="menu">
                                 <h3>
-                                    User Account
+                                    {{user}}
                                     <div>
-                                        Operational Team
+                                        {{user.email}}
                                     </div>
                                 </h3>
                                 <ul>
@@ -219,7 +219,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="{% static '/js/scrollreveal.min.js' %}"></script>
+    <script src="{% static '/js/function.js' %}"></script>
     <script src="{% static '/js/swiper-bundle.min.js' %}"></script>
     <script src="{% static '/js/mixitup.min.js' %}"></script>
     <script src="{% static '/js/script.js' %}"></script>

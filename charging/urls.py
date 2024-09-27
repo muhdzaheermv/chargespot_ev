@@ -18,4 +18,8 @@ urlpatterns = [
     # Tag
     path('station/tag/<slug:tag_slug>/',views.tag_list,name="tags"),
     
+    # Add Review
+    
+    path("ajax-add-review/<csid>/",views.ajax_add_review,name="ajax-add-review")
+    
 ]

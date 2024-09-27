@@ -217,6 +217,9 @@
                 </div>
             </div>
 
+            
+
+
             <section class="featured section" id="featured">
             
                 <h2 class="section__title">Related Station</h2>
@@ -245,6 +248,27 @@
                     </div>
                 </div>
         </section>
+
+
+        <section class="featured section" id="featured">
+            
+            <h2 class="section__title">Add a review</h2>
+            <strong class="text-success" id="review-res">Review added</strong>
+            
+            <form class="row g-3 needs-validation hide-comment-form" action="{% url 'ajax-add-review' station.csid %}" id="commentForm" method="POST">
+                {% csrf_token %}
+                <div class="col-md-6 position-relative">
+                  <label for="validationTooltip03" class="form-label">Review</label>
+                  {{review_form.rating}}
+                  <!-- <input type="text" class="form-control" required> -->
+                  {{review_form.review}}
+                </div>  
+                <div class="col-12">
+                  <button class="btn btn-primary" type="submit">Submit form</button>
+                </div>
+              </form>
+            
+    </section>
 
             <section>
                 <div class="row d-flex justify-content-center">
@@ -286,6 +310,7 @@
 
               
     </section>
+
 
     
 

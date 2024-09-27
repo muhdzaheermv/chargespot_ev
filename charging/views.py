@@ -1,9 +1,9 @@
-from django.http import HttpResponse
+from django.http import HttpResponse,JsonResponse
 from django.shortcuts import render,get_object_or_404
 from django.db.models import Count,Avg
 from taggit.models import Tag
-
 from stationoperator.models import Category,ChargingStation,StationImages,SlotReservation,BookingSlots,StationReview,wishlist,Address,Vendor
+from charging.forms import StationReviewform
 
 
 # HomePage
@@ -85,10 +85,13 @@ def station_detail_view(request,csid):
     
     average_rating = StationReview.objects.filter(station=station).aggregate(rating=Avg('rating'))
     
+    review_form = StationReviewform()
+    
     station_images = station.station_images.all()
     
     context={
         'station':station,
+        'review_form':review_form,
         'station_images':station_images,
         'average_rating':average_rating,
         'reviews':reviews,
@@ -112,3 +115,32 @@ def tag_list(request, tag_slug=None):
     }
 
     return render(request, "tag.html", context)
+
+def ajax_add_review(request, csid):
+    station = ChargingStation.objects.get(csid=csid)
+    user = request.user 
+
+    review = StationReview.objects.create(
+        user=user,
+        station=station,
+        review = request.POST['review'],
+        rating = request.POST['rating'],
+    )
+
+    context = {
+        'user': user.username,
+        'review': request.POST['review'],
+        'rating': request.POST['rating'],
+    }
+
+    average_reviews = StationReview.objects.filter(station=station).aggregate(rating=Avg("rating"))
+
+    return JsonResponse(
+       {
+         'bool': True,
+        'context': context,
+        'average_reviews': average_reviews
+       }
+    )
+    
+    
