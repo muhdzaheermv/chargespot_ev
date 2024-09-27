@@ -18,7 +18,8 @@ $("#commentForm").submit(function(e){
 
             if(res.bool== true){
                 $('#review-res').html("Review added successfully")
-                $(".hide-comment-form").hide
+                $(".hide-comment-form").hide()
+                $(".hide-review-form").hide()
             }
             
         }

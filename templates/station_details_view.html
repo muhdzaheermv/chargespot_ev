@@ -250,10 +250,10 @@
         </section>
 
 
-        <section class="featured section" id="featured">
+        <strong class="badge badge-success" id="review-res"></strong>
+        <section class="featured section hide-review-form" id="featured">
             
             <h2 class="section__title">Add a review</h2>
-            <strong class="text-success" id="review-res">Review added</strong>
             
             <form class="row g-3 needs-validation hide-comment-form" action="{% url 'ajax-add-review' station.csid %}" id="commentForm" method="POST">
                 {% csrf_token %}
@@ -264,7 +264,7 @@
                   {{review_form.review}}
                 </div>  
                 <div class="col-12">
-                  <button class="btn btn-primary" type="submit">Submit form</button>
+                  <button class="btn btn-primary" type="submit">Post</button>
                 </div>
               </form>
             
@@ -282,7 +282,7 @@
                   </div>
                 </div>
               
-                <div class="row text-center">
+                <div class="row text-center comment-list">
                     
                     {% for r in reviews %}
                         
