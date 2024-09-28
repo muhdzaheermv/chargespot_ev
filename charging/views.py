@@ -143,4 +143,16 @@ def ajax_add_review(request, csid):
        }
     )
     
+def search_view(request):
+    query = request.GET.get("q")
+    
+    stations = ChargingStation.objects.filter(title__icontains=query).order_by("-date")
+    
+    context ={
+        "stations":stations,
+        "query":query,
+}
+    
+    return render(request,"search.html",context)
+    
     

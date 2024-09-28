@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'users',
     'stationoperator',
     'charging',
+    'bookings'
 ]
 
 MIDDLEWARE = [

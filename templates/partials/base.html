@@ -35,8 +35,21 @@
                 <!-- <i class="ri-steering-line"></i> -->
                 ChargeSpot
             </a>
+            
+            
             <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list">
+                    <li class="nav__item">
+                        <form action="{% url 'search_view' %}">
+                        <div class="input-group rounded">
+                            <input type="search" class="form-control rounded" placeholder="Search" name="q" aria-label="Search" aria-describedby="search-addon" />
+                            <!-- <span class="input-group-text border-0" id="search-addon"> -->
+                              <!-- <i class="fas fa-search"></i> -->
+                               <button class="fas fa-search btn btn-primary" type="submit"></button>
+                            </span>
+                        </div>
+                    </form>
+                    </li>
                     <li class="nav__item">
                         <a href="{% url 'index' %}" class="nav__link active-link">Home</a>
                     </li>
@@ -57,7 +70,7 @@
                             <div class="profile" onclick="menuToggle();">
                                 <img src="{% static "/img/user.png" %}" alt="">
                             </div>
-
+                            
                             <div class="menu">
                                 <h3>
                                     {{user}}
@@ -71,7 +84,7 @@
                                         <a href="#">My Account</a>
                                     </li>
                                     <li>
-                                        <span class="material-symbols-outlined icons-size">
+                                        <span class="material-symbols-outlined icons-size">            
                                             book
                                         </span>
                                         <a href="#">Booking Status</a>
@@ -122,6 +135,7 @@
 
 
         </nav>
+        
 
         {% if messages %}
 

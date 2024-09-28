@@ -20,6 +20,9 @@ urlpatterns = [
     
     # Add Review
     
-    path("ajax-add-review/<csid>/",views.ajax_add_review,name="ajax-add-review")
+    path("ajax-add-review/<csid>/",views.ajax_add_review,name="ajax-add-review"),
+    
+    
+    path("search/",views.search_view,name="search_view")
     
 ]
